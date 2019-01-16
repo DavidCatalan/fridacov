@@ -34,8 +34,8 @@ const threadlist = ['all'];
 const moduleWhitelist = ['all'];
 const intercetpNew = true;
 const customModules = [{
-  path: 'C:\...', // You need to provide a path to the file you are going to aply the coverage info to
-    or IDA/Lighthouse will complain. Can put whatever and edit it the log file manually by the way.
+  path: 'C:\...', 	// You need to provide a path to the file you are going to apply the coverage info to
+    			or IDA/Lighthouse will complain. You can put whatever and edit the resulting log file manually.
   base: ptr(0xDEADBEEF),
   size: ptr(0x666),
 }, {...}];
@@ -71,3 +71,15 @@ script.message.connect((message, data) => {
 [...]
 covdump.save();
 ```
+
+# Demo use case
+
+Willing to get coverage information from a dll decrypted, loaded and executed by Gootkit, within the context of the original sample. After some instrumentation lines you can get to the payload's EP, then start the coverage.
+
+![](screenshots/gkinstr.png)
+
+After loading the resulting log file into Lighthouse.
+![](screenshots/lhgkpayload.png)
+
+Although some basic blocks got lost during the process(sad story).
+![](screenshots/bbfail.png)
